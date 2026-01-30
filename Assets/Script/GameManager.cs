@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     }
 
     void currentobjectCondition() {
-        Clone.GetComponent<Collider2D>().enabled = true;
+        Clone.GetComponent<CircleCollider2D>().enabled = true;
         Clone.GetComponent<Rigidbody2D>().gravityScale = 1;
     }
 
@@ -53,5 +53,6 @@ public class GameManager : MonoBehaviour
     void SetObject() {
         SelectNextObject();
         Clone = Instantiate(NextObject);
+        Clone.GetComponent<Planet>().gameManager = this;
     }
 }
