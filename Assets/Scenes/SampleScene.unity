@@ -157,8 +157,11 @@ MonoBehaviour:
   - {fileID: 3699745484834372772, guid: 575022c85826289428e68013005a89d2, type: 3}
   - {fileID: 2989342116909283088, guid: 8f1ac8ebd2282814f95dc2175147e193, type: 3}
   - {fileID: 67671375435103476, guid: fddd779b5acb52f4ea1c1edbe71074b7, type: 3}
-  NextObject: {fileID: 952799889}
+  NextObject: {fileID: 0}
   Clone: {fileID: 0}
+  scoreText: {fileID: 1089567704}
+  nextPlanetImage: {fileID: 952799891}
+  isGameOver: 0
 --- !u!4 &108047224
 Transform:
   m_ObjectHideFlags: 0
