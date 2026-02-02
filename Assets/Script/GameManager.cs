@@ -10,6 +10,17 @@ public class GameManager : MonoBehaviour
 
     float timeCount = 0;
 
+    public static GameManager instance;
+
+    public bool isGameOver = false;
+    public int score = 0;
+
+    void Awake()
+    {
+        if (instance == null)
+            instance = this;
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,12 +30,14 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isGameOver)
+            return;
+
         // 시간 누적
         timeCount += Time.deltaTime;
 
         currentObjectPos();
         
-
         if(Mouse.current.leftButton.wasPressedThisFrame && timeCount >= 0.5f) {
             // 누적 시간 초기화
             timeCount = 0;
@@ -32,6 +45,19 @@ public class GameManager : MonoBehaviour
             currentobjectCondition();
             SetObject();
         }
+    }
+
+    public void AddScore(int amount)
+    {
+        score += amount;
+        Debug.Log("Score: " + score);
+    }
+
+    public void GameOver()
+    {
+        isGameOver = true;
+        Time.timeScale = 0; // 게임 정지
+        Debug.Log("Game Over!");
     }
 
     // 물체가 마우스 X 좌표에 따라오게 만들기
