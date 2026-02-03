@@ -4,11 +4,14 @@ using UnityEngine.InputSystem;
 using TMPro;
 using UnityEngine.UI;
 
+using UnityEngine.SceneManagement;
+
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> planets = new List<GameObject>();
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private Image nextPlanetImage;
+    [SerializeField] private GameObject gameOverPanel;
 
     private GameObject nextObject;
     private GameObject currentObject;
@@ -120,14 +123,18 @@ public class GameManager : MonoBehaviour
     {
         isGameOver = true;
         Time.timeScale = 0; // 게임 정지
-        Debug.Log("Game Over!");
+        gameOverPanel.SetActive(true);
+    }
+
+    public void ReGame() {
+        SceneManager.LoadScene("GameScene");
     }
 
     // 현재 물체가 마우스 X 좌표에 따라오게 만들기
     private void UpdateCurrentObjectPosition() {
         if (currentObject == null) return;
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        currentObject.transform.position = new Vector3(Mathf.Clamp(mousePos.x, -3.5f, 3.5f), 4.2f, 0);
+        currentObject.transform.position = new Vector3(Mathf.Clamp(mousePos.x, -3.5f, 3.5f), 4.0f, 0);
     }
 
     private void ActivateCurrentObject() {

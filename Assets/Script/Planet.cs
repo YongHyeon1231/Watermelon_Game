@@ -13,6 +13,8 @@ public class Planet : MonoBehaviour
     {
         isMerging = state;
     }
+
+    float t = 0;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,7 +25,15 @@ public class Planet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (transform.position.y > 4.1f) {
+            t += Time.deltaTime;
+
+            if(t > 3) {
+                gameManager.GameOver();
+            }
+        } else {
+            t = 0;
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
