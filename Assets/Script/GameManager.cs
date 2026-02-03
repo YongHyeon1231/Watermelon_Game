@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
 
         UpdateCurrentObjectPosition();
         
-        if(Mouse.current.leftButton.wasPressedThisFrame && timeCount >= 0.5f) {
+        if(Mouse.current.leftButton.wasPressedThisFrame && timeCount >= 0.3f) {
             // 누적 시간 초기화
             timeCount = 0;
 
