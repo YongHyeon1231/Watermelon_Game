@@ -82,8 +82,8 @@ public class GameManager : MonoBehaviour
 
         int currentLevel = int.Parse(thisObject.tag);
         
-        // 마지막 단계가 아닌 경우만 업그레이드
-        if (currentLevel < planets.Count - 1)
+        // 마지막 단계가 아닌 경우만 업그레이드 (List Index 범위 내 접근)
+        if (currentLevel < planets.Count)
         {
             GameObject nextPrefab = planets[currentLevel];
             
@@ -105,12 +105,12 @@ public class GameManager : MonoBehaviour
                 
                 // 점수 추가
                 AddScore((currentLevel + 1) * 10);
+
+                // 병합 성공 시에만 기존 행성 파괴
+                Destroy(thisObject);
+                Destroy(collisionObject);
             }
         }
-
-        // 병합된 행성 파괴
-        Destroy(thisObject);
-        Destroy(collisionObject);
     }
 
     public void AddScore(int amount)
